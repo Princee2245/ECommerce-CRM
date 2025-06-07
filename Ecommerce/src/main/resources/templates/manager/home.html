@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales Manager Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome, <span th:text="${user.email}">User</span>!</h1>
+
+<h2>Quick Actions</h2>
+<button onclick="location.href='/manager/tasks'">Tasks</button>
+<button onclick="location.href='/manager/meetings'">Meetings</button>
+<button onclick="location.href='/manager/customers'">Customers</button>
+<button onclick="location.href='/manager/sales'">Sales</button>
+<button onclick="location.href='/logout'">Log out</button>
+
+<h2>Sales Metrics</h2>
+<ul>
+    <li th:each="metric, iterStat : ${metrics}">
+        <p>Sales Person: <span th:text="${userForSalesMetrics[iterStat.index].email}">User ID</span></p>
+        <p>Total Sales: <span th:text="${metric.totalSales}">0</span></p>
+        <p>Monthly Sales: <span th:text="${metric.monthlySales}">0</span></p>
+        <p>Quarterly Sales: <span th:text="${metric.quarterlySales}">0</span></p>
+    </li>
+
+</ul>
+
+<h2>Upcoming Tasks and Meetings</h2>
+<ul>
+    <li th:each="task : ${tasks}">
+        <span th:text="${task.description}">Task Description</span> - <span th:text="${task.dueDate}">Due Date</span>
+    </li>
+    <li th:each="meeting : ${meetings}">
+        <span th:text="${meeting.description}">Meeting Description</span> - <span th:text="${meeting.date}">Meeting Date</span>
+    </li>
+</ul>
+
+
+</body>
+</html>

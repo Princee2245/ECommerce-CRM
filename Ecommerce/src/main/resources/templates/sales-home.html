@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sales Home</title>
+</head>
+<body>
+<h1>Welcome, Salesperson</h1>
+
+<h2>Performance Metrics</h2>
+<div>
+<!--    <p>Monthly Sales: <span th:text="${salesMetrics.monthlySales}"></span></p>-->
+<!--    <p>Quarterly Sales: <span th:text="${salesMetrics.quarterlySales}"></span></p>-->
+<!--    <p>Target vs Actual: <span th:text="${salesMetrics.targetVsActual}"></span></p>-->
+    <!-- Add charts if needed -->
+</div>
+
+<h2>Upcoming Tasks</h2>
+<ul>
+    <li th:each="task : ${tasks}" th:text="${task.description} + ' - ' + ${task.dueDate}"></li>
+</ul>
+
+<h2>Upcoming Meetings</h2>
+<ul>
+    <li th:each="meeting : ${meetings}" th:text="${meeting.description} + ' - ' + ${meeting.date}"></li>
+</ul>
+
+<h2>Recent Activity</h2>
+<ul>
+    <li th:each="activity : ${recentActivities}" th:text="${activity.description} + ' - ' + ${activity.date}"></li>
+</ul>
+
+<h2>Your Customers</h2>
+<ul>
+    <li th:each="customer : ${customers}" th:text="${customer.name}"></li>
+</ul>
+
+<h2>Quick Actions</h2>
+<button onclick="window.location.href='/sales/addCustomer'">Add Customer</button>
+<button onclick="window.location.href='/sales/addLead'">Add Lead</button>
+<button onclick="window.location.href='/sales/addTask'">Add Task</button>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Information Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary, .btn-secondary {
+            width: 100%;
+        }
+        .btn-secondary {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Task Information Form</h2>
+    <form th:action="@{/sales/tasks/saveTask}" th:object="${task}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" id="description" placeholder="Description" th:field="*{description}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" th:field="*{dueDate}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="userEmail">User Email:</label>
+            <select id="userEmail" th:field="*{user.email}" class="form-control" required>
+                <option th:each="user : ${users}" th:value="${user.email}" th:text="${user.email}"></option>
+            </select>
+        </div>
+
+        <input type="hidden" th:field="*{createdAt}"/>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="/sales/tasks" class="btn btn-secondary">Back to Task</a>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

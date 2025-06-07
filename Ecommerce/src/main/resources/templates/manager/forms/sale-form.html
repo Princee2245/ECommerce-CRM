@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sale Information Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>Sale Information Form</h2>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/manager/sales/saveSale}" th:object="${sale}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+
+                <div class="form-group">
+                    <label for="user">Assigned To:</label>
+                    <select id="user" th:field="*{user.id}" class="form-control" required>
+                        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.email}">User</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="text" id="amount" placeholder="Amount" th:field="*{amount}" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="saleDate">Sale Date:</label>
+                    <input type="date" id="saleDate" placeholder="Sale date" th:field="*{saleDate}" class="form-control" required>
+                </div>
+
+                <input type="hidden" th:field="*{createdAt}"/>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="/manager/sales" class="btn btn-secondary">Back to Sales</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+        }
+        .btn-primary, .btn-danger, .btn-success {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">CRM System</h1>
+        </div>
+    </div>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <a class="navbar-brand" th:href="@{/sales/home}">Sales Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/sales/tasks}">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/sales/meetings}">Meetings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/sales/customers}">Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/sales/sales}">Sales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h2>Sales</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>User Email</th>
+            <th>Amount</th>
+            <th>Sale Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sale : ${sales}">
+            <td th:text="${sale.user.email}"></td>
+            <td th:text="${sale.amount}"></td>
+            <td th:text="${sale.saleDate}"></td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="@{/sales/sales/updateSale(saleId=${sale.id})}">Update</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/sales/sales/deleteSale(saleId=${sale.id})}"
+                   onclick="return confirm('Are you sure you want to delete the sale?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Add Sale Button -->
+    <div class="text-right">
+        <a class="btn btn-success" th:href="@{/sales/sales/addSale}">Add Sale</a>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
