@@ -2,9 +2,13 @@ package com.example.crmSystem.model;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Setter
+@Getter
 @SqlResultSetMapping(
         name = "SalesMetricsMapping",
         entities = {
@@ -40,35 +44,4 @@ public class SalesMetrics {
     // Getters and Setters
 
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public BigDecimal getTotalSales() {
-        return totalSales;
-    }
-
-    public void setTotalSales(BigDecimal totalSales) {
-        this.totalSales = totalSales;
-    }
-
-    public BigDecimal getMonthlySales() {
-        return monthlySales;
-    }
-
-    public void setMonthlySales(BigDecimal monthlySales) {
-        this.monthlySales = monthlySales;
-    }
-
-    public BigDecimal getQuarterlySales() {
-        return quarterlySales;
-    }
-
-    public void setQuarterlySales(BigDecimal quarterlySales) {
-        this.quarterlySales = quarterlySales;
-    }
 }
